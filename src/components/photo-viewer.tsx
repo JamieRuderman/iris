@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import {
@@ -43,17 +43,17 @@ export function PhotoViewer({
     setImageLoaded(false);
   }, [currentIndex]);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     const newIndex = currentIndex > 0 ? currentIndex - 1 : photos.length - 1;
     setCurrentIndex(newIndex);
     onNavigate?.(photos[newIndex]);
-  };
+  }, [currentIndex, photos, onNavigate]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     const newIndex = currentIndex < photos.length - 1 ? currentIndex + 1 : 0;
     setCurrentIndex(newIndex);
     onNavigate?.(photos[newIndex]);
-  };
+  }, [currentIndex, photos, onNavigate]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -74,7 +74,14 @@ export function PhotoViewer({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, currentIndex, photos.length]);
+  }, [
+    isOpen,
+    currentIndex,
+    photos.length,
+    handleNext,
+    handlePrevious,
+    onClose,
+  ]);
 
   if (!currentPhoto) return null;
 

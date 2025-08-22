@@ -19,10 +19,10 @@ export default function AboutPage() {
           </p>
 
           <p>
-            Through various series including memorial tattoos, female artists'
-            spaces, and special places, Ruderman creates visual narratives that
-            invite viewers to consider their own connections to memory and
-            place.
+            Through various series including memorial tattoos, female
+            artists&apos; spaces, and special places, Ruderman creates visual
+            narratives that invite viewers to consider their own connections to
+            memory and place.
           </p>
 
           <p>
