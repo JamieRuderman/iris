@@ -142,11 +142,6 @@ export function PhotoViewer({
               sizes="100vw"
             />
           </div>
-
-          {/* Photo info */}
-          <div className="absolute bottom-4 left-4 z-50 text-gray-600">
-            <div className="text-sm">{photo.filename}</div>
-          </div>
         </div>
       </DialogContent>
     </Dialog>

@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: GallerySectionPageProps) {
-  const sectionTitle = getSectionTitle(params.section);
+  const { section } = await params;
+  const sectionTitle = getSectionTitle(section);
 
   if (!sectionTitle) {
     return {
@@ -33,11 +34,12 @@ export async function generateMetadata({ params }: GallerySectionPageProps) {
   };
 }
 
-export default function GallerySectionPage({
+export default async function GallerySectionPage({
   params,
 }: GallerySectionPageProps) {
-  const photos = getPhotosBySection(params.section);
-  const sectionTitle = getSectionTitle(params.section);
+  const { section } = await params;
+  const photos = getPhotosBySection(section);
+  const sectionTitle = getSectionTitle(section);
 
   if (!photos.length || !sectionTitle) {
     notFound();

@@ -31,11 +31,9 @@ export function PhotoGrid({ photos, className }: PhotoGridProps) {
 
   return (
     <>
-      {/* Proper Masonry Layout - 3 columns */}
       <div
-        className={cn(className)}
+        className={cn("columns-1 xs:columns-2 md:columns-3", className)}
         style={{
-          columnCount: 3,
           columnGap: "1rem",
           columnFill: "balance",
         }}
@@ -51,7 +49,7 @@ export function PhotoGrid({ photos, className }: PhotoGridProps) {
               alt={photo.filename}
               width={400}
               height={300}
-              className="w-full h-auto block"
+              className="w-full h-auto block border-1 border-gray-100"
               sizes="33vw"
             />
           </div>
