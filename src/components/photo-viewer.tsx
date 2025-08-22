@@ -3,7 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import type { Photo } from "@/lib/photos";
 
@@ -77,13 +82,17 @@ export function PhotoViewer({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogOverlay className="bg-black/95" />
-      <DialogContent className="max-w-[100vw] max-h-[100vh] w-full h-full p-0 border-0 bg-transparent">
+      <DialogOverlay className="bg-white" />
+      <DialogContent
+        className="max-w-[100vw] max-h-[100vh] w-full h-full p-0 border-0 bg-white"
+        style={{ maxWidth: "100vw", maxHeight: "100vh" }}
+      >
+        <DialogTitle className="sr-only">Photo Viewer</DialogTitle>
         <div className="relative w-full h-full flex items-center justify-center">
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+            className="absolute top-4 right-4 z-50 p-2 rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
           >
             <X size={24} />
           </button>
@@ -93,13 +102,13 @@ export function PhotoViewer({
             <>
               <button
                 onClick={handlePrevious}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2 rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
               >
                 <ChevronLeft size={24} />
               </button>
               <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-2 rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
               >
                 <ChevronRight size={24} />
               </button>
@@ -108,37 +117,35 @@ export function PhotoViewer({
 
           {/* Photo counter */}
           {photos.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 px-3 py-1 rounded-full bg-black/50 text-white text-sm">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-sm">
               {currentIndex + 1} / {photos.length}
             </div>
           )}
 
-          {/* Main image */}
-          <div className="relative w-full h-full flex items-center justify-center p-8">
-            <div className="relative max-w-full max-h-full">
-              {!imageLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                </div>
+          {/* Main image - Full screen centered */}
+          <div className="absolute inset-0">
+            {!imageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              </div>
+            )}
+            <Image
+              src={photo.path}
+              alt={photo.filename}
+              fill
+              className={cn(
+                "object-contain transition-opacity duration-300",
+                imageLoaded ? "opacity-100" : "opacity-0"
               )}
-              <Image
-                src={photo.path}
-                alt={photo.filename}
-                width={1920}
-                height={1280}
-                className={cn(
-                  "max-w-full max-h-full object-contain transition-opacity duration-300",
-                  imageLoaded ? "opacity-100" : "opacity-0"
-                )}
-                onLoad={() => setImageLoaded(true)}
-                priority
-              />
-            </div>
+              onLoad={() => setImageLoaded(true)}
+              priority
+              sizes="100vw"
+            />
           </div>
 
           {/* Photo info */}
-          <div className="absolute bottom-4 left-4 z-50 text-white">
-            <div className="text-sm opacity-75">{photo.filename}</div>
+          <div className="absolute bottom-4 left-4 z-50 text-gray-600">
+            <div className="text-sm">{photo.filename}</div>
           </div>
         </div>
       </DialogContent>

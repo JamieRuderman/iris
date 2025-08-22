@@ -11,22 +11,23 @@ export default function ContactPage() {
 
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-lg text-gray-600 mb-8">
-            For inquiries about prints, exhibitions, or collaborations, please get in touch.
+            For inquiries about prints, exhibitions, or collaborations, please
+            get in touch.
           </p>
-          
+
           <div className="space-y-4 text-gray-700">
             <p>
-              <span className="font-medium">Email:</span>{' '}
-              <a 
-                href="mailto:iris@irisruderman.com" 
+              <span className="font-medium">Email:</span>{" "}
+              <a
+                href="mailto:iris@irisruderman.com"
                 className="text-gray-900 hover:underline"
               >
-                iris@irisruderman.com
+                irisruderman@gmail.com
               </a>
             </p>
-            
+
             <p>
-              <span className="font-medium">Based in:</span> New York, NY
+              <span className="font-medium">Based in:</span> San Francisco, CA
             </p>
           </div>
         </div>

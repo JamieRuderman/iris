@@ -121,12 +121,29 @@
   }
 }
 
-/* Gallery specific styles */
-.masonry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 300px;
-  gap: 1rem;
+/* Masonry grid specific styles */
+.columns-1 {
+  column-count: 1;
+}
+
+.columns-2 {
+  column-count: 2;
+}
+
+.columns-3 {
+  column-count: 3;
+}
+
+.columns-4 {
+  column-count: 4;
+}
+
+.columns-5 {
+  column-count: 5;
+}
+
+.break-inside-avoid {
+  break-inside: avoid;
 }
 
 /* Smooth image loading */

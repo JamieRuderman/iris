@@ -315,36 +315,8 @@ export const getAllPhotos = (): Photo[] => {
 
 // Get a curated selection of photos for the home page (from various sections)
 export const getHomePagePhotos = (): Photo[] => {
-  // Return a mix of photos from different sections for the home page
-  const allPhotos = getAllPhotos();
-
-  // Select representative photos from different sections
-  return [
-    // From memorial tattoos
-    allPhotos.find((p) => p.id === "memorial-1"),
-    allPhotos.find((p) => p.id === "memorial-2"),
-    // From female artists
-    allPhotos.find((p) => p.id === "female-1"),
-    allPhotos.find((p) => p.id === "female-3"),
-    // From woven
-    allPhotos.find((p) => p.id === "woven-2"),
-    allPhotos.find((p) => p.id === "woven-4"),
-    // From summerfield
-    allPhotos.find((p) => p.id === "summer-1"),
-    allPhotos.find((p) => p.id === "summer-3"),
-    // From collections
-    allPhotos.find((p) => p.id === "collection-2"),
-    allPhotos.find((p) => p.id === "collection-4"),
-    // From special places
-    allPhotos.find((p) => p.id === "special-1"),
-    allPhotos.find((p) => p.id === "special-3"),
-    // From ode to ishiuchi miyako
-    allPhotos.find((p) => p.id === "ode-1"),
-    allPhotos.find((p) => p.id === "ode-3"),
-    // From miscellaneous
-    allPhotos.find((p) => p.id === "misc-1"),
-    allPhotos.find((p) => p.id === "misc-5"),
-  ].filter(Boolean) as Photo[]; // Remove any undefined entries
+  // Just return all photos for the home page
+  return getAllPhotos();
 };
 
 export const getPhotosBySection = (sectionId: string): Photo[] => {
