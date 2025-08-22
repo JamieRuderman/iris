@@ -22,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased`}>
         <Navigation />
-        <main className="pt-16">{children}</main>
+        <main className="pt-16 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+          {children}
+        </main>
       </body>
     </html>
   );
